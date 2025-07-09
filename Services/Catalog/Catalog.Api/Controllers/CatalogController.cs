@@ -1,8 +1,8 @@
 using System.Net;
 using Catalog.Application.Queries;
 using Catalog.Core.Model;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Shared.Mediator;
 
 namespace Catalog.Api.Controllers;
 
@@ -21,4 +21,15 @@ public class CatalogController(
         var result = await _mediator.Send(query);
         return Ok(result);
     }
+    
+    [HttpGet]
+    [Route("GetAllTypes")]
+    [ProducesResponseType(typeof(IList<ProductType>), (int)HttpStatusCode.OK)]
+    public async Task<ActionResult<IList<ProductType>>> GetAllTypes()
+    {
+        var query = new GetAllTypesQuery();
+        var result = await _mediator.Send(query);
+        return Ok(result);
+    }
 }
+
