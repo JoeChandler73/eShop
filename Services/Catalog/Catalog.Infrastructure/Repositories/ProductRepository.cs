@@ -60,7 +60,31 @@ public class ProductRepository(ICatalogContext context)
             Count = await context.Products.CountDocumentsAsync(p => true)
         };
     }
-    
+
+    public async Task<Product> GetProduct(string id)
+    {
+        var product = await context
+            .Products
+            .Find(x => x.Id == id)
+            .FirstOrDefaultAsync();
+        
+        return product.ToProduct();
+    }
+
+    public async Task<IEnumerable<Product>> GetProductByName(string name)
+    {
+        var filter = Builders<ProductEntity>.Filter.Eq(p => p.Name, name);
+        var products = await context.Products.Find(filter).ToListAsync();
+        return products.Select(p => p.ToProduct());
+    }
+
+    public async Task<IEnumerable<Product>> GetProductsByBrand(string name)
+    {
+        var filter = Builders<ProductEntity>.Filter.Eq(p => p.Brands.Name, name);
+        var products = await context.Products.Find(filter).ToListAsync();
+        return products.Select(p => p.ToProduct());
+    }
+
     public async Task<IEnumerable<ProductBrand>> GetAllBrands()
     {
         var productBrands = await context
@@ -79,6 +103,13 @@ public class ProductRepository(ICatalogContext context)
             .ToListAsync();
 
         return productTypes.Select(t => t.ToProductType());
+    }
+    
+    public async Task<Product> CreateProduct(Product product)
+    {
+        var productEntity = product.ToProductEntity();
+        await context.Products.InsertOneAsync(productEntity);
+        return product;
     }
     
     private async Task<IReadOnlyList<ProductEntity>> DataFilter(CatalogSpecParams catalogSpecParams, FilterDefinition<ProductEntity> filter)

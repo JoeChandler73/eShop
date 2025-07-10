@@ -17,4 +17,11 @@ public static class ProductBrandEntityExtensions
             Id = entity.Id,
             Name = entity.Name
         };
+
+    public static ProductBrandEntity ToProductBrandEntity(this ProductBrand productBrand) =>
+        new ProductBrandEntity
+        {
+            Id = productBrand.Id,
+            Name = productBrand.Name
+        };
 }

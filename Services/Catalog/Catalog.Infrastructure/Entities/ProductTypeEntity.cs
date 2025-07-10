@@ -17,4 +17,11 @@ public static class ProductTypeEntityExtensions
             Id = entity.Id,
             Name = entity.Name
         };
+
+    public static ProductTypeEntity ToProductTypeEntity(this ProductType productType) =>
+        new ProductTypeEntity
+        {
+            Id = productType.Id,
+            Name = productType.Name
+        };
 }

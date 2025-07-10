@@ -39,4 +39,19 @@ public static class ProducEntityExtensions
             Type = entity.Types.ToProductType()
         };
     }
+
+    public static ProductEntity ToProductEntity(this Product product)
+    {
+        return new ProductEntity
+        {
+            Id = product.Id,
+            Name = product.Name,
+            Summary = product.Summary,
+            Description = product.Description,
+            ImageFile = product.ImageFile,
+            Price = product.Price,
+            Brands = product.Brand.ToProductBrandEntity(),
+            Types = product.Type.ToProductTypeEntity()
+        };
+    }
 }
