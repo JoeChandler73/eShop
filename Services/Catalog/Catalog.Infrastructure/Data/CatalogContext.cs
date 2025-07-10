@@ -7,6 +7,8 @@ namespace Catalog.Infrastructure.Data;
 
 public class CatalogContext : ICatalogContext
 {
+    public IMongoCollection<ProductEntity> Products { get; }
+    
     public IMongoCollection<ProductBrandEntity> ProductBrands { get; }
     
     public IMongoCollection<ProductTypeEntity> ProductTypes { get; }
@@ -15,10 +17,12 @@ public class CatalogContext : ICatalogContext
     {
         var client = new MongoClient(options.Value.ConnectionString);
         var database = client.GetDatabase(options.Value.DatabaseName);
-        
+
+        Products = database.GetCollection<ProductEntity>(options.Value.ProductsCollection);
         ProductBrands = database.GetCollection<ProductBrandEntity>(options.Value.BrandsCollection);
         ProductTypes = database.GetCollection<ProductTypeEntity>(options.Value.TypesCollection);
         
+        ProductContextSeed.SeedData(Products);
         BrandContextSeed.SeedData(ProductBrands);
         TypeContextSeed.SeedData(ProductTypes);
     }

@@ -1,3 +1,4 @@
+using Catalog.Core.Model;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
@@ -20,4 +21,22 @@ public class ProductEntity : BaseEntity
     
     [BsonRepresentation(BsonType.Decimal128)]
     public decimal Price { get; set; }
+}
+
+public static class ProducEntityExtensions
+{
+    public static Product ToProduct(this ProductEntity entity)
+    {
+        return new Product
+        {
+            Id = entity.Id,
+            Name = entity.Name,
+            Summary = entity.Summary,
+            Description = entity.Description,
+            ImageFile = entity.ImageFile,
+            Price = entity.Price,
+            Brand = entity.Brands.ToProductBrand(),
+            Type = entity.Types.ToProductType()
+        };
+    }
 }

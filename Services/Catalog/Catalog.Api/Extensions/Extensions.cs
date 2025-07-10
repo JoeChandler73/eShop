@@ -14,6 +14,7 @@ public static class Extensions
         builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("MongoDbSettings"));
         builder.Services.AddMediator(typeof(GetAllTypesQuery).Assembly);
         builder.Services.AddScoped<ICatalogContext, CatalogContext>();
+        builder.Services.AddScoped<IProductRepository, ProductRepository>();
         builder.Services.AddScoped<IBrandRepository, ProductRepository>();
         builder.Services.AddScoped<ITypesRepository, ProductRepository>();
     }

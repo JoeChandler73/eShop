@@ -2,6 +2,8 @@ namespace Catalog.Core.Model;
 
 public class Product
 {
+    public string Id { get; set; }
+    
     public string Name { get; set; }
     
     public string Summary { get; set; }
@@ -12,7 +14,7 @@ public class Product
     
     public decimal Price { get; set; }
     
-    public ProductBrand Brands { get; set; }
+    public ProductBrand Brand { get; set; }
     
-    public ProductType Types { get; set; }
+    public ProductType Type { get; set; }
 }

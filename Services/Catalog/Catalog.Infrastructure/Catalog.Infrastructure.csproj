@@ -12,7 +12,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\..\..\Shared\Shared.Mapping\Shared.Mapping.csproj" />
       <ProjectReference Include="..\Catalog.Domain\Catalog.Domain.csproj" />
     </ItemGroup>
 
@@ -23,6 +22,10 @@
       </Content>
       <None Remove="Data\SeedData\types.json" />
       <Content Include="Data\SeedData\types.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Data\SeedData\products.json" />
+      <Content Include="Data\SeedData\products.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
     </ItemGroup>

@@ -5,11 +5,11 @@ using Shared.Mediator;
 
 namespace Catalog.Application.Handlers;
 
-public class GetAllTypesHandler(ITypesRepository _typesRepository) : IRequestHandler<GetAllTypesQuery, IList<ProductType>>
+public class GetAllTypesHandler(ITypesRepository typesRepository) : IRequestHandler<GetAllTypesQuery, IList<ProductType>>
 {
     public async Task<IList<ProductType>> Handle(GetAllTypesQuery request)
     {
-        var types = await _typesRepository.GetAllTypes();
+        var types = await typesRepository.GetAllTypes();
         return types.ToList();
     }
 }

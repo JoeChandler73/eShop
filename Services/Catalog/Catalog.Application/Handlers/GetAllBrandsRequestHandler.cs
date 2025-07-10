@@ -5,11 +5,11 @@ using Shared.Mediator;
 
 namespace Catalog.Application.Handlers;
 
-public class GetAllBrandsRequestHandler(IBrandRepository _brandRepository) : IRequestHandler<GetAllBrandsQuery, IList<ProductBrand>>
+public class GetAllBrandsRequestHandler(IBrandRepository brandRepository) : IRequestHandler<GetAllBrandsQuery, IList<ProductBrand>>
 {
     public async Task<IList<ProductBrand>> Handle(GetAllBrandsQuery request)
     {
-        var brands = await _brandRepository.GetAllBrands();
+        var brands = await brandRepository.GetAllBrands();
         return brands.ToList();
     }
 }
