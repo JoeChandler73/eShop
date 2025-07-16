@@ -2,7 +2,7 @@ using Shared.Mediator;
 
 namespace Basket.Application.Commands;
 
-public class DeleteBasketByUserNameCommand : IRequest<bool>
+public class DeleteBasketByUserNameCommand : IRequest
 {
     public string UserName { get; set; }
 
