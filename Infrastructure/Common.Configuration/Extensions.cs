@@ -9,7 +9,6 @@ public static class Extensions
 {
     public static WebApplicationBuilder ConfigureDefaults(this WebApplicationBuilder builder)
     {
-        builder.Host.UseSerilog(Logging.Logging.ConfigureLogger);
         builder.AddDefaultHealthChecks();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();

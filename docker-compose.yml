@@ -40,6 +40,20 @@ services:
     ports:
       - "6379:6379"
         
+  # Postgres
+  discountdb:
+    image: postgres
+    container_name: discountdb
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=Password@1
+      - POSTGRES_DB=DiscountDb
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+        
   # RabbitMq
   rabbitmq:
     image: rabbitmq:3-management
@@ -94,7 +108,10 @@ services:
     ports: 
       - 8081:80
         
+  # Disount Api
+        
 volumes:
   mongo_data:
+  postgres_data:
   rabbitmq_data:
   elasticsearch-data:

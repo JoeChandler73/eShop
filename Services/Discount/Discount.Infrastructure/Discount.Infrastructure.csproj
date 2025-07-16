@@ -7,12 +7,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+      <ProjectReference Include="..\Discount.Domain\Discount.Domain.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
-      <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.1" />
+      <PackageReference Include="Dapper" Version="2.1.66" />
+      <PackageReference Include="Grpc.AspNetCore" Version="2.64.0" />
+      <PackageReference Include="Npgsql" Version="9.0.3" />
     </ItemGroup>
-    
+
 </Project>

@@ -1,7 +1,9 @@
 using Basket.Api.Services;
+using Basket.Application.GrpcService;
 using Basket.Application.Queries;
 using Basket.Domain.Repositories;
 using Basket.Infrastructure.Repositories;
+using Discount.Grpc.Protos;
 using Shared.Mediator;
 using Shared.Messaging;
 using Shared.Messaging.Infrastructure;
@@ -16,7 +18,10 @@ public static class Extensions
         builder.Services.AddSingleton<IMessageSerializer, JsonMessageSerialzer>();
         builder.Services.AddSingleton<IMessageBus, RabbitMqMessageBus>();
         builder.Services.AddHostedService<MessageBusService>();
-        
+        builder.Services.AddScoped<DiscountGrpcService>();
+        builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(options =>
+            options.Address = new Uri(builder.Configuration["GrpcSettings:DiscountUrl"]));
+                
         builder.Services.AddStackExchangeRedisCache(options =>
         {
             options.Configuration = builder.Configuration.GetValue<string>("RedisSettings:ConnectionString");
