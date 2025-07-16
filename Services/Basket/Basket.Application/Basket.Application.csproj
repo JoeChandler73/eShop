@@ -7,8 +7,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\..\..\Shared\Shared.Mediator\Shared.Mediator.csproj" />
       <ProjectReference Include="..\Basket.Domain\Basket.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Shared.Mediator" Version="1.0.0" />
+      <PackageReference Include="Shared.Messaging.Application" Version="1.0.0" />
     </ItemGroup>
 
 </Project>

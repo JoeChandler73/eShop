@@ -9,6 +9,9 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0"/>
+        <PackageReference Include="Shared.Mediator" Version="1.0.0" />
+        <PackageReference Include="Shared.Messaging.Application" Version="1.0.0" />
+        <PackageReference Include="Shared.Messaging.Infrastructure" Version="1.0.0" />
     </ItemGroup>
 
     <ItemGroup>

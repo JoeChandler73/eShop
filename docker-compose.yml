@@ -34,11 +34,28 @@ services:
        
   # Redis Cache 
   basketdb:
-    image: redis:alpine
+    image: redis
     container_name: basketdb
     restart: always
     ports:
       - "6379:6379"
+        
+  # RabbitMq
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    healthcheck:
+      test: rabbitmq-diagnostics check_port_connectivity
+      interval: 30s
+      timeout: 30s
+      retries: 3
+      start_period: 60s
+    ports:
+      - "5672:5672"    # AMQP port
+      - "15672:15672"  # Management UI port
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    restart: unless-stopped
         
   # Catalog Api
   catalog.api:
@@ -67,11 +84,17 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - DOTNET_URLS=http://+:80
+      - "MongoDbSettings__ConnectionString=mongodb://catalogdb:27017"
+      - "ElasticSettings__Uri=http://elasticsearch:9200"
+      - "RedisSettings__ConnectionString=basketdb"
+      - "RabbitMq__ConnectionString=amqp://guest:guest@rabbitmq:5672"
     depends_on:
       - basketdb
+      - rabbitmq
     ports: 
       - 8081:80
         
 volumes:
   mongo_data:
-  elasticsearch-data:  
+  rabbitmq_data:
+  elasticsearch-data:

@@ -1,15 +1,18 @@
 using System.Net;
 using Basket.Application.Commands;
+using Basket.Application.Events;
 using Basket.Application.Queries;
 using Basket.Domain.Model;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Mediator;
+using Shared.Messaging;
 
 namespace Basket.Api.Controllers;
 
 [Route("api/[controller]")]
 public class BasketController(
     IMediator mediator,
+    IMessageBus messageBus,
     ILogger<BasketController> logger) : ControllerBase
 {
     [HttpGet]
@@ -52,8 +55,26 @@ public class BasketController(
         
         if(basket == null)
             return BadRequest();
+
+        var eventMessage = new BasketCheckoutEvent
+        {
+            UserName = basketCheckout.UserName,
+            TotalPrice = basketCheckout.TotalPrice,
+            FirstName = basketCheckout.FirstName,
+            LastName = basketCheckout.LastName,
+            EmailAddress = basketCheckout.EmailAddress,
+            AddressLine = basketCheckout.AddressLine,
+            Country = basketCheckout.Country,
+            State = basketCheckout.State,
+            ZipCode = basketCheckout.ZipCode,
+            CardName = basketCheckout.CardName,
+            CardNumber = basketCheckout.CardNumber,
+            Expiration = basketCheckout.Expiration,
+            Cvv = basketCheckout.Cvv,
+            PaymentMethod = basketCheckout.PaymentMethod
+        };
         
-        // publish end point message
+        await messageBus.Send(eventMessage);
         
         var deleteQuery = new DeleteBasketByUserNameCommand(basketCheckout.UserName);
         await mediator.Send(deleteQuery);

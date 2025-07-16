@@ -21,10 +21,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Infrastructure", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Configuration", "Infrastructure\Common.Configuration\Common.Configuration.csproj", "{ABF22222-7A5A-4942-9408-38699AE90BB0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{D5A3A003-A29B-49DC-B3FA-01C1B74D8E67}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared.Mediator", "..\Shared\Shared.Mediator\Shared.Mediator.csproj", "{D47B73BA-5137-47D3-A809-F76F426B54CC}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Compose", "Compose", "{99FBCE99-48A3-4607-990D-77045E697E0A}"
 	ProjectSection(SolutionItems) = preProject
 		docker-compose.yml = docker-compose.yml
@@ -39,6 +35,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Basket.Application", "Services\Basket\Basket.Application\Basket.Application.csproj", "{0D18F94C-97E2-4237-BD10-6B5F9E16F458}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Basket.Infrastructure", "Services\Basket\Basket.Infrastructure\Basket.Infrastructure.csproj", "{7866DC04-3CDD-4594-A1A5-0FE8F1CF6C4D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{476D1B82-0772-45F9-9ED6-761EE3354AF0}"
+	ProjectSection(SolutionItems) = preProject
+		NuGet\Shared.Mediator.1.0.0.nupkg = NuGet\Shared.Mediator.1.0.0.nupkg
+		NuGet\Shared.Messaging.Application.1.0.0.nupkg = NuGet\Shared.Messaging.Application.1.0.0.nupkg
+		NuGet\Shared.Messaging.Infrastructure.1.0.0.nupkg = NuGet\Shared.Messaging.Infrastructure.1.0.0.nupkg
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,7 +59,6 @@ Global
 		{2A0D3399-6831-4602-BA9B-8CFAD47FE987} = {0B1BF6BD-D0B3-46F5-BC17-6822C0CF1487}
 		{617C0A19-EC19-4653-B6B1-07B8E03E8093} = {0B1BF6BD-D0B3-46F5-BC17-6822C0CF1487}
 		{ABF22222-7A5A-4942-9408-38699AE90BB0} = {D77B7302-086A-4254-9305-960090A43620}
-		{D47B73BA-5137-47D3-A809-F76F426B54CC} = {D5A3A003-A29B-49DC-B3FA-01C1B74D8E67}
 		{91B8E391-4525-4655-81D2-DBFD43F50DA0} = {0DABE791-6798-4AD8-929B-B9709991FF33}
 		{6021009A-652F-4301-AB9D-6FF7E5068734} = {91B8E391-4525-4655-81D2-DBFD43F50DA0}
 		{8AB4BF4B-C9FE-4FC7-9042-AE62A3A81026} = {91B8E391-4525-4655-81D2-DBFD43F50DA0}
@@ -88,10 +90,6 @@ Global
 		{ABF22222-7A5A-4942-9408-38699AE90BB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABF22222-7A5A-4942-9408-38699AE90BB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABF22222-7A5A-4942-9408-38699AE90BB0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D47B73BA-5137-47D3-A809-F76F426B54CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D47B73BA-5137-47D3-A809-F76F426B54CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D47B73BA-5137-47D3-A809-F76F426B54CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D47B73BA-5137-47D3-A809-F76F426B54CC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6021009A-652F-4301-AB9D-6FF7E5068734}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6021009A-652F-4301-AB9D-6FF7E5068734}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6021009A-652F-4301-AB9D-6FF7E5068734}.Release|Any CPU.ActiveCfg = Release|Any CPU

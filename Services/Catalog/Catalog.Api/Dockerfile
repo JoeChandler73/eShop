@@ -4,13 +4,14 @@ EXPOSE 8080
 
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
+COPY ["NuGet", "/NuGet"]
 COPY ["Services/Catalog/Catalog.Api/Catalog.Api.csproj", "Services/Catalog/Catalog.Api/"]
 COPY ["Infrastructure/Common.Configuration/Common.Configuration.csproj", "Infrastructure/Common.Configuration/"]
 COPY ["Infrastructure/Common.Logging/Common.Logging.csproj", "Infrastructure/Common.Logging/"]
 COPY ["Services/Catalog/Catalog.Domain/Catalog.Domain.csproj", "Services/Catalog/Catalog.Domain/"]
 COPY ["Services/Catalog/Catalog.Application/Catalog.Application.csproj", "Services/Catalog/Catalog.Application/"]
 COPY ["Services/Catalog/Catalog.Infrastructure/Catalog.Infrastructure.csproj", "Services/Catalog/Catalog.Infrastructure/"]
-COPY ["../Shared/Shared.Mediator/Shared.Mediator.csproj", "../Shared/Shared.Mediator/"]
+RUN dotnet nuget add source "/NuGet"
 RUN dotnet restore "Services/Catalog/Catalog.Api/Catalog.Api.csproj"
 COPY . .
 WORKDIR "/src/Services/Catalog/Catalog.Api"
