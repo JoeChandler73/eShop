@@ -13,11 +13,10 @@ public class CatalogContext : ICatalogContext
     
     public IMongoCollection<ProductTypeEntity> ProductTypes { get; }
 
-    public CatalogContext(IOptions<MongoDbSettings> options)
+    public CatalogContext(
+        IMongoDatabase database,
+        IOptions<MongoDbSettings> options)
     {
-        var client = new MongoClient(options.Value.ConnectionString);
-        var database = client.GetDatabase(options.Value.DatabaseName);
-
         Products = database.GetCollection<ProductEntity>(options.Value.ProductsCollection);
         ProductBrands = database.GetCollection<ProductBrandEntity>(options.Value.BrandsCollection);
         ProductTypes = database.GetCollection<ProductTypeEntity>(options.Value.TypesCollection);

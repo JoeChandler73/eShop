@@ -4,6 +4,7 @@ using Basket.Application.Queries;
 using Basket.Domain.Repositories;
 using Basket.Infrastructure.Repositories;
 using Discount.Grpc.Protos;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Shared.Mediator;
 using Shared.Messaging;
 using Shared.Messaging.Infrastructure;
@@ -26,6 +27,11 @@ public static class Extensions
         {
             options.Configuration = builder.Configuration.GetValue<string>("RedisSettings:ConnectionString");
         });
+        
+        builder.Services.AddHealthChecks().AddRedis(
+            builder.Configuration["RedisSettings:ConnectionString"],
+            "RedisHealth",
+            HealthStatus.Degraded);
         
         builder.Services.AddMediator(typeof(GetBasketByUserNameQuery).Assembly);
         builder.Services.AddScoped<IBasketRepository, BasketRepository>();
