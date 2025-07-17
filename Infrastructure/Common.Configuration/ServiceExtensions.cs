@@ -1,27 +1,26 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Serilog;
 
 namespace Common.Configuration;
 
-public static class Extensions
+public static class ServiceExtensions
 {
-    public static WebApplicationBuilder ConfigureDefaults(this WebApplicationBuilder builder)
+    public static IServiceCollection ConfigureDefaults(this IServiceCollection services)
     {
-        builder.AddDefaultHealthChecks();
-        builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
-        builder.Services.AddControllers();
+        services.AddDefaultHealthChecks();
+        services.AddEndpointsApiExplorer();
+        services.AddSwaggerGen();
+        services.AddControllers();
         
-        return builder;
+        return services;
     }
     
-    private static IHostApplicationBuilder AddDefaultHealthChecks(this IHostApplicationBuilder builder)
+    private static IServiceCollection AddDefaultHealthChecks(this IServiceCollection services)
     {
-        builder.Services.AddHealthChecks();
+        services.AddHealthChecks();
         
-        return builder;
+        return services;
     }
 
     public static void ConfigureDefaults(this WebApplication app)

@@ -11,7 +11,7 @@ namespace Catalog.Infrastructure.Extensions;
 
 public static class ServiceExtensions
 {
-    public static void ConfigurePersistance(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection ConfigurePersistance(this IServiceCollection services, IConfiguration configuration)
     {
         services.Configure<MongoDbSettings>(configuration.GetSection("MongoDbSettings"));
 
@@ -27,5 +27,7 @@ public static class ServiceExtensions
         services.AddScoped<IProductRepository, ProductRepository>();
         services.AddScoped<IBrandRepository>(provider => provider.GetRequiredService<ProductRepository>());
         services.AddScoped<ITypesRepository>(provider => provider.GetRequiredService<ProductRepository>());
+        
+        return services;
     }
 }

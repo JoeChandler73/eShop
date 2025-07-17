@@ -10,8 +10,8 @@ static WebApplication CreateWebApplication(string[] args)
 {
     var builder = WebApplication.CreateBuilder(args);
     builder.Host.UseSerilog(Logging.ConfigureLogger);
-    builder.ConfigureDefaults();
-    builder.ConfigureServices();
+    builder.Services.ConfigureDefaults();
+    builder.Services.ConfigureServices(builder.Configuration);
     
     var app = builder.Build();
     app.ConfigureDefaults();
