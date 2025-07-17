@@ -64,12 +64,12 @@ services:
       timeout: 30s
       retries: 3
       start_period: 60s
+    restart: unless-stopped
     ports:
       - "5672:5672"    # AMQP port
       - "15672:15672"  # Management UI port
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
-    restart: unless-stopped
         
   # Catalog Api
   catalog.api:
@@ -84,9 +84,10 @@ services:
       - "MongoDbSettings__ConnectionString=mongodb://catalogdb:27017"
       - "ElasticSettings__Uri=http://elasticsearch:9200"
     depends_on:
-      - catalogdb
+      catalogdb:
+        condition: service_started
     ports:
-      - 8080:80
+      - "8080:80"
       
   # Basket Api
   basket.api:
@@ -102,13 +103,34 @@ services:
       - "ElasticSettings__Uri=http://elasticsearch:9200"
       - "RedisSettings__ConnectionString=basketdb"
       - "RabbitMq__ConnectionString=amqp://guest:guest@rabbitmq:5672"
+      - "GrpcSettings__DiscountUrl=http://discount.api"
     depends_on:
-      - basketdb
-      - rabbitmq
+      basketdb:
+        condition: service_started
+      rabbitmq:
+        condition: service_healthy
+      discount.api:
+        condition: service_started
     ports: 
-      - 8081:80
+      - "8081:80"
         
   # Disount Api
+  discount.api:
+    image: discount.api
+    container_name: discount.api
+    build:
+      context: .
+      dockerfile: Services/Discount/Discount.Api/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DOTNET_URLS=http://+:80
+      - "ElasticSettings__Uri=http://elasticsearch:9200"
+      - "DatabaseSettings__ConnectionString=Server=discountdb;Port=5432;Database=DiscountDb;User Id=admin;Password=Password@1;"
+    depends_on:
+      discountdb:
+        condition: service_started
+    ports:
+      - "8082:80"
         
 volumes:
   mongo_data:
