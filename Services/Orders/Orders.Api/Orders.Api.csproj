@@ -8,19 +8,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AspNetCore.HealthChecks.MongoDb" Version="9.0.0" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.7" />
         <PackageReference Include="Shared.Mediator" Version="1.0.0" />
-        <PackageReference Include="Shared.Messaging.Application" Version="1.0.0" />
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.1" />
+        <PackageReference Include="Shared.Messaging.Infrastructure" Version="1.0.0" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\Infrastructure\Common.Configuration\Common.Configuration.csproj" />
       <ProjectReference Include="..\..\..\Infrastructure\Common.Logging\Common.Logging.csproj" />
-      <ProjectReference Include="..\..\Orders\Orders.Application\Orders.Application.csproj" />
-      <ProjectReference Include="..\Catalog.Application\Catalog.Application.csproj" />
-      <ProjectReference Include="..\Catalog.Infrastructure\Catalog.Infrastructure.csproj" />
+      <ProjectReference Include="..\Orders.Application\Orders.Application.csproj" />
+      <ProjectReference Include="..\Orders.Infrastructure\Orders.Infrastructure.csproj" />
     </ItemGroup>
 
     <ItemGroup>
