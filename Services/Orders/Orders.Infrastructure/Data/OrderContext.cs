@@ -29,11 +29,10 @@ public sealed class OrderContext : DbContext
             switch (entry.State)
             {
                 case EntityState.Added:
-                    entry.Entity.CreatedDate = DateTime.Now;
-                    entry.Entity.CreatedBy = "joe";
-                    break;
                 case EntityState.Modified:
-                    entry.Entity.LastModifiedDate = DateTime.Now;
+                    entry.Entity.CreatedDate = DateTime.UtcNow;
+                    entry.Entity.CreatedBy = "joe";
+                    entry.Entity.LastModifiedDate = DateTime.UtcNow;
                     entry.Entity.LastModifiedBy = "joe";
                     break;
             }

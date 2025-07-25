@@ -154,10 +154,13 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - DOTNET_URLS=http://+:80
       - "ElasticSettings__Uri=http://elasticsearch:9200"
-      - "ConnectionStrings__OrderingConnectionString=orderdb=localhost;Database=OrderDb;User Id=sa;Password=Joe1234567;Encrypt=False;"
+      - "RabbitMq__ConnectionString=amqp://guest:guest@rabbitmq:5672"
+      - "ConnectionStrings__OrderingConnectionString=Server=orderdb;Database=OrderDb;User Id=sa;Password=Joe1234567;Encrypt=False;"
     depends_on:
       orderdb:
         condition: service_started
+      rabbitmq:
+        condition: service_healthy
     ports:
       - "8083:80"
         
