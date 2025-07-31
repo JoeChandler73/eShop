@@ -12,10 +12,23 @@
 
     <ItemGroup>
       <PackageReference Include="AspNetCore.HealthChecks.Redis" Version="9.0.0" />
+      <PackageReference Include="Grpc.AspNetCore" Version="2.71.0" />
       <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="9.0.7" />
       <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.7" />
       <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.7" />
       <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Protobuf Include="Protos\discount.proto">
+        <GrpcServices>Client</GrpcServices>
+        <Access>Public</Access>
+        <ProtoCompile>True</ProtoCompile>
+        <CompileOutputs>True</CompileOutputs>
+        <OutputDir>obj\Debug/net9.0/</OutputDir>
+        <Generator>MSBuild:Compile</Generator>
+        <Link>Protos\discount.proto</Link>
+      </Protobuf>
     </ItemGroup>
 
 </Project>

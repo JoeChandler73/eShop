@@ -1,21 +1,21 @@
 using Basket.Application.Commands;
-using Basket.Application.GrpcService;
 using Basket.Domain.Model;
 using Basket.Domain.Repositories;
+using Basket.Domain.Services;
 using Shared.Mediator;
 
 namespace Basket.Application.Handlers;
 
 public class CreateShoppingCartHandler(
     IBasketRepository basketRepository,
-    DiscountGrpcService discountGrpcService) 
+    IDiscountService discountService) 
     : IRequestHandler<CreateShoppingCartCommand, ShoppingCart>
 {
     public async Task<ShoppingCart> Handle(CreateShoppingCartCommand request)
     {
         foreach (var item in request.Items)
         {
-            var coupon = await discountGrpcService.GetDiscount(item.ProductName);
+            var coupon = await discountService.GetDiscount(item.ProductName);
             item.Price -= coupon.Amount;
         }
         

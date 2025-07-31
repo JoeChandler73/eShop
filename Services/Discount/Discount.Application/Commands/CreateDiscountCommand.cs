@@ -1,9 +1,9 @@
-using Discount.Grpc.Protos;
+using Discount.Domain.Model;
 using Shared.Mediator;
 
 namespace Discount.Application.Commands;
 
-public class CreateDiscountCommand : IRequest<CouponModel>
+public class CreateDiscountCommand : IRequest<Coupon>
 {
     public string ProductName { get; set; }
     

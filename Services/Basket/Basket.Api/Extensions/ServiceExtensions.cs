@@ -1,7 +1,8 @@
 using Basket.Api.Services;
-using Basket.Application.GrpcService;
 using Basket.Application.Queries;
+using Basket.Domain.Services;
 using Basket.Infrastructure.Extensions;
+using Basket.Infrastructure.Services;
 using Discount.Grpc.Protos;
 using Shared.Mediator;
 using Shared.Messaging;
@@ -24,7 +25,7 @@ public static class ServiceExtensions
 
     private static IServiceCollection ConfigureDiscountService(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddScoped<DiscountGrpcService>();
+        services.AddScoped<IDiscountService, DiscountService>();
         services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(options =>
             options.Address = new Uri(configuration["GrpcSettings:DiscountUrl"]));
         

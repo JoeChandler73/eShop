@@ -5,7 +5,7 @@ using Shared.Mediator;
 
 namespace Discount.Api.Extensions;
 
-public static class Extensions
+public static class ServiceExtensions
 {
     public static void ConfigureServices(this IHostApplicationBuilder builder)
     {

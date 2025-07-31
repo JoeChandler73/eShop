@@ -14,11 +14,17 @@ public class DiscountService(
     public override async Task<CouponModel> GetDiscount(GetDiscountRequest request, ServerCallContext context)
     {
         var query = new GetDiscountQuery(request.ProductName);
-        var result = await mediator.Send(query);
+        var coupon = await mediator.Send(query);
         
-        logger.LogInformation($"Discount is retrieved for the Product Name: {request.ProductName} and Amount : {result.Amount}");
+        logger.LogInformation($"Discount is retrieved for the Product Name: {request.ProductName} and Amount : {coupon.Amount}");
         
-        return result;
+        return new CouponModel
+        {
+            Id = coupon.Id,
+            ProductName = coupon.ProductName,
+            Description = coupon.Description,
+            Amount = coupon.Amount
+        };
     }
 
     public override async Task<CouponModel> CreateDiscount(CreateDiscountRequest request, ServerCallContext context)
@@ -30,11 +36,17 @@ public class DiscountService(
             Description = request.Coupon.Description
         };
         
-        var result = await mediator.Send(command);
+        var coupon = await mediator.Send(command);
         
-        logger.LogInformation($"Discount is successfully created for the Product Name: {result.ProductName}");
+        logger.LogInformation($"Discount is successfully created for the Product Name: {coupon.ProductName}");
         
-        return result;
+        return new CouponModel
+        {
+            Id = coupon.Id,
+            ProductName = coupon.ProductName,
+            Description = coupon.Description,
+            Amount = coupon.Amount
+        };
     }
 
     public override async Task<CouponModel> UpdateDiscount(UpdateDiscountRequest request, ServerCallContext context)
@@ -46,14 +58,21 @@ public class DiscountService(
             Description = request.Coupon.Description
         };
         
-        var result = await mediator.Send(command);
+        var coupon = await mediator.Send(command);
         
-        logger.LogInformation($"Discount is successfully updated for the Product Name: {result.ProductName}");
+        logger.LogInformation($"Discount is successfully updated for the Product Name: {coupon.ProductName}");
         
-        return result;
+        return new CouponModel
+        {
+            Id = coupon.Id,
+            ProductName = coupon.ProductName,
+            Description = coupon.Description,
+            Amount = coupon.Amount
+        };
     }
 
-    public override async Task<DeleteDiscountResponse> DeleteDiscount(DeleteDiscountRequest request,
+    public override async Task<DeleteDiscountResponse> DeleteDiscount(
+        DeleteDiscountRequest request,
         ServerCallContext context)
     {
         var command = new DeleteDiscountCommand(request.ProductName);

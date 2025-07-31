@@ -15,11 +15,5 @@
       <PackageReference Include="Shared.Mediator" Version="1.0.0" />
       <PackageReference Include="Shared.Messaging.Application" Version="1.0.0" />
     </ItemGroup>
-
-    <ItemGroup>
-        <Protobuf Include="..\..\Discount\Discount.Application\Protos\discount.proto" GrpcServices="Client">
-            <Link>Protos\discount.proto</Link>
-        </Protobuf>
-    </ItemGroup>
     
 </Project>

@@ -1,10 +1,9 @@
 using Discount.Domain.Model;
-using Discount.Grpc.Protos;
 using Shared.Mediator;
 
 namespace Discount.Application.Queries;
 
-public class GetDiscountQuery : IRequest<CouponModel>
+public class GetDiscountQuery : IRequest<Coupon>
 {
     public string ProductName { get; set; }
 
