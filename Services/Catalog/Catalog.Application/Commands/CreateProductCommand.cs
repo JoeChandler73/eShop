@@ -3,17 +3,15 @@ using Shared.Mediator;
 
 namespace Catalog.Application.Commands;
 
-public class CreateProductCommand : IRequest<Product>
+public record CreateProductCommand : IRequest<Product>
 {
-    public string Name { get; set; }
-    public string Summary { get; set; }
-    public string Description { get; set; }
-    public string ImageFile { get; set; }
-    public decimal Price { get; set; }
-    
-    public ProductBrand Brand { get; set; }
-    
-    public ProductType Type { get; set; }
+    public required string Name { get; init; }
+    public required string Summary { get; init; }
+    public required string Description { get; init; }
+    public required string ImageFile { get; init; }
+    public required decimal Price { get; init; }
+    public required ProductBrand Brand { get; init; }
+    public required ProductType Type { get; init; }
 }
 
 public static class CreateProductCommandExtensions

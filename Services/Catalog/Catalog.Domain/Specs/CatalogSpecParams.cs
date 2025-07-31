@@ -9,16 +9,16 @@ public class CatalogSpecParams
     public int PageSize
     {
         get => _pageSize;
-        set => _pageSize = (value > MaxPageSize) ? MaxPageSize : value;
+        init => _pageSize = (value > MaxPageSize) ? MaxPageSize : value;
     }
     
-    public int PageIndex { get; set; } = 1;
+    public int PageIndex { get; init; } = 1;
     
-    public string? BrandId { get; set; }
+    public string? BrandId { get; init; }
     
-    public string? TypeId { get; set; }
+    public string? TypeId { get; init; }
     
-    public string? Sort { get; set; }
+    public string? Sort { get; init; }
     
-    public string? Search{ get; set; }
+    public string? Search{ get; init; }
 }

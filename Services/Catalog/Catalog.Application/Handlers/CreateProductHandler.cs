@@ -5,8 +5,7 @@ using Shared.Mediator;
 
 namespace Catalog.Application.Handlers;
 
-public class CreateProductHandler(
-    IProductRepository productRepository) : IRequestHandler<CreateProductCommand, Product>
+public class CreateProductHandler(IProductRepository productRepository) : IRequestHandler<CreateProductCommand, Product>
 {
     public async Task<Product> Handle(CreateProductCommand request)
     {

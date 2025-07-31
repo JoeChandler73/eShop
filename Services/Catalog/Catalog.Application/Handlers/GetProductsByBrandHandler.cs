@@ -5,9 +5,7 @@ using Shared.Mediator;
 
 namespace Catalog.Application.Handlers;
 
-public class GetProductsByBrandHandler(
-    IProductRepository productRepository) 
-    : IRequestHandler<GetProductsByBrandQuery, IList<Product>>
+public class GetProductsByBrandHandler(IProductRepository productRepository) : IRequestHandler<GetProductsByBrandQuery, IList<Product>>
 {
     public async Task<IList<Product>> Handle(GetProductsByBrandQuery request)
     {

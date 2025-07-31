@@ -4,7 +4,4 @@ using Shared.Mediator;
 
 namespace Catalog.Application.Queries;
 
-public class GetAllProductsQuery(CatalogSpecParams catalogSpecParams) : IRequest<Pagination<Product>>
-{
-    public CatalogSpecParams CatalogSpecParams { get; set; } = catalogSpecParams;
-}
+public record GetAllProductsQuery(CatalogSpecParams CatalogSpecParams) : IRequest<Pagination<Product>>;

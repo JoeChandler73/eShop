@@ -9,7 +9,8 @@ namespace Catalog.Application.Handlers;
 
 public class GetAllProductsHandler(
     IProductRepository productRepository,
-    ILogger<GetAllProductsHandler> logger) : IRequestHandler<GetAllProductsQuery, Pagination<Product>>
+    ILogger<GetAllProductsHandler> logger) 
+    : IRequestHandler<GetAllProductsQuery, Pagination<Product>>
 {
     public async Task<Pagination<Product>> Handle(GetAllProductsQuery request)
     {

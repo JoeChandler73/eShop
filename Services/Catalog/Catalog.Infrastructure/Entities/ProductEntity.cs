@@ -4,7 +4,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace Catalog.Infrastructure.Entities;
 
-public class ProductEntity : BaseEntity
+public record ProductEntity : BaseEntity
 {
     [BsonElement("Name")]
     public required string Name { get; init; }
@@ -44,7 +44,7 @@ public static class ProducEntityExtensions
     {
         return new ProductEntity
         {
-            Id = product.Id,
+            Id = string.IsNullOrWhiteSpace(product.Id) ? ObjectId.GenerateNewId().ToString() : product.Id,
             Name = product.Name,
             Summary = product.Summary,
             Description = product.Description,

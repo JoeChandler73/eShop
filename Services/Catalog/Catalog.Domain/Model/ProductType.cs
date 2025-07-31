@@ -1,8 +1,8 @@
 namespace Catalog.Core.Model;
 
-public class ProductType
+public record ProductType
 {
-    public string Id { get; set; }
+    public string? Id { get; init; }
     
-    public string Name { get; set; }
+    public required string Name { get; init; }
 }

@@ -1,9 +1,10 @@
 using Catalog.Core.Model;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace Catalog.Infrastructure.Entities;
 
-public class ProductBrandEntity : BaseEntity
+public record ProductBrandEntity : BaseEntity
 {
     [BsonElement("Name")]
     public required string Name { get; init; }
@@ -12,16 +13,16 @@ public class ProductBrandEntity : BaseEntity
 public static class ProductBrandEntityExtensions
 {
     public static ProductBrand ToProductBrand(this ProductBrandEntity entity) =>
-        new ProductBrand
+        new()
         {
             Id = entity.Id,
             Name = entity.Name
         };
 
     public static ProductBrandEntity ToProductBrandEntity(this ProductBrand productBrand) =>
-        new ProductBrandEntity
+        new()
         {
-            Id = productBrand.Id,
+            Id = string.IsNullOrWhiteSpace(productBrand.Id) ? ObjectId.GenerateNewId().ToString() : productBrand.Id,
             Name = productBrand.Name
         };
 }

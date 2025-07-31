@@ -1,20 +1,20 @@
 namespace Catalog.Core.Model;
 
-public class Product
+public record Product
 {
-    public string Id { get; set; }
+    public string? Id { get; init; }
     
-    public string Name { get; set; }
+    public required string Name { get; init; }
     
-    public string Summary { get; set; }
+    public required string Summary { get; init; }
     
-    public string Description { get; set; }
+    public required string Description { get; init; }
     
-    public string ImageFile { get; set; }
+    public required string ImageFile { get; init; }
     
-    public decimal Price { get; set; }
+    public required decimal Price { get; init; }
     
-    public ProductBrand Brand { get; set; }
+    public required ProductBrand Brand { get; init; }
     
-    public ProductType Type { get; set; }
+    public required ProductType Type { get; init; }
 }

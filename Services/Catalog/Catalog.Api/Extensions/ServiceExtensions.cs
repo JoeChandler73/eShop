@@ -9,7 +9,7 @@ public static class ServiceExtensions
     public static IServiceCollection ConfigureServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddMediator(typeof(GetAllTypesQuery).Assembly);
-        services.ConfigurePersistance(configuration);
+        services.ConfigurePersistence(configuration);
         
         return services;
     }

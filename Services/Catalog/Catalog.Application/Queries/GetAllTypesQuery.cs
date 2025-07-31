@@ -3,6 +3,4 @@ using Shared.Mediator;
 
 namespace Catalog.Application.Queries;
 
-public class GetAllTypesQuery : IRequest<IList<ProductType>>
-{
-}
+public record GetAllTypesQuery : IRequest<IList<ProductType>>;

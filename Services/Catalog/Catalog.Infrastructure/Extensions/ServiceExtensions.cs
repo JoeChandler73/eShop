@@ -11,9 +11,9 @@ namespace Catalog.Infrastructure.Extensions;
 
 public static class ServiceExtensions
 {
-    public static IServiceCollection ConfigurePersistance(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection ConfigurePersistence(this IServiceCollection services, IConfiguration configuration)
     {
-        services.Configure<MongoDbSettings>(configuration.GetSection("MongoDbSettings"));
+        services.Configure<MongoDbSettings>(configuration.GetSection(nameof(MongoDbSettings)));
 
         services.AddSingleton<IMongoDatabase>(provider =>
         {

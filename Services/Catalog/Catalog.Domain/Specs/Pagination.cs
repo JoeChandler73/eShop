@@ -2,23 +2,11 @@ namespace Catalog.Core.Specs;
 
 public class Pagination<T> where T : class
 {
-    public Pagination(int pageIndex, int pageSize, int count, IReadOnlyList<T> data)
-    {
-        PageIndex = pageIndex;
-        PageSize = pageSize;
-        Count = count;
-        Data = data;
-    }
-
-    public Pagination()
-    {
-    }
-
-    public int PageIndex { get; set; }
+    public required int PageIndex { get; init; }
     
-    public int PageSize { get; set; }
+    public required int PageSize { get; init; }
     
-    public long Count { get; set; }
+    public required long Count { get; init; }
 
-    public IReadOnlyList<T> Data { get; set; }
+    public required IReadOnlyList<T> Data { get; init; }
 }
