@@ -9,9 +9,9 @@ namespace Basket.Application.Handlers;
 public class CreateShoppingCartHandler(
     IBasketRepository basketRepository,
     IDiscountService discountService) 
-    : IRequestHandler<CreateShoppingCartCommand, ShoppingCart>
+    : IRequestHandler<CreateShoppingCartCommand, ShoppingCart?>
 {
-    public async Task<ShoppingCart> Handle(CreateShoppingCartCommand request)
+    public async Task<ShoppingCart?> Handle(CreateShoppingCartCommand request)
     {
         foreach (var item in request.Items)
         {

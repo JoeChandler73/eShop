@@ -1,14 +1,13 @@
 namespace Basket.Domain.Model;
 
-public class ShoppingCartItem
+public record ShoppingCartItem
 {
-    public int Quantity { get; set; }
+    public required string ProductId { get; init; }
+    public required string ProductName { get; init; }
     
-    public decimal Price { get; set; }
+    public required int Quantity { get; init; }
     
-    public string ProductId { get; set; }
+    public required decimal Price { get; set; }
     
-    public string ImageFile { get; set; }
-    
-    public string ProductName { get; set; }
+    public required string ImageFile { get; init; }
 }

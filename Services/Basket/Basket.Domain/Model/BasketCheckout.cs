@@ -1,32 +1,32 @@
 namespace Basket.Domain.Model;
 
-public class BasketCheckout
+public record BasketCheckout
 {
-    public string UserName { get; set; }
+    public required string UserName { get; init; }
     
-    public decimal TotalPrice { get; set; }
+    public required decimal TotalPrice { get; init; }
 
-    public string FirstName { get; set; }
+    public required string FirstName { get; init; }
     
-    public string LastName { get; set; }
+    public required string LastName { get; init; }
     
-    public string EmailAddress { get; set; }
+    public required string EmailAddress { get; init; }
     
-    public string AddressLine { get; set; }
+    public required string AddressLine { get; init; }
     
-    public string Country { get; set; }
+    public required string Country { get; init; }
     
-    public string State { get; set; }
+    public required string State { get; init; }
     
-    public string ZipCode { get; set; }
+    public required string ZipCode { get; init; }
 
-    public string CardName { get; set; }
+    public required string CardName { get; init; }
     
-    public string CardNumber { get; set; }
+    public required string CardNumber { get; init; }
     
-    public string Expiration { get; set; }
+    public required string Expiration { get; init; }
     
-    public string Cvv { get; set; }
+    public required string Cvv { get; init; }
     
-    public int PaymentMethod { get; set; }
+    public required int PaymentMethod { get; init; }
 }

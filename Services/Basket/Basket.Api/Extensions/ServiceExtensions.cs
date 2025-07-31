@@ -27,7 +27,7 @@ public static class ServiceExtensions
     {
         services.AddScoped<IDiscountService, DiscountService>();
         services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(options =>
-            options.Address = new Uri(configuration["GrpcSettings:DiscountUrl"]));
+            options.Address = new Uri(configuration["GrpcSettings:DiscountUrl"] ?? throw new InvalidOperationException()));
         
         return services;
     }

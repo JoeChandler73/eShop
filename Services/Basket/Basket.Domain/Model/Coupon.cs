@@ -1,12 +1,12 @@
 namespace Basket.Domain.Model;
 
-public class Coupon
+public record Coupon
 {
-    public int Id { get; set; }
+    public int? Id { get; set; }
     
-    public string ProdcutName { get; set; }
+    public required string ProductName { get; init; }
     
-    public string Description { get; set; }
+    public required string Description { get; init; }
     
-    public int Amount { get; set; }
+    public required int Amount { get; init; }
 }

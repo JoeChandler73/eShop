@@ -18,7 +18,7 @@ public class DiscountService(DiscountProtoService.DiscountProtoServiceClient cli
         return new Coupon
         {
             Id = couponModel.Id,
-            ProdcutName = couponModel.ProductName,
+            ProductName = couponModel.ProductName,
             Description = couponModel.Description,
             Amount = couponModel.Amount
         };

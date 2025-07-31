@@ -6,9 +6,9 @@ using Shared.Mediator;
 namespace Basket.Application.Handlers;
 
 public class GetBasketByUserNameHandler(
-    IBasketRepository basketRepository) : IRequestHandler<GetBasketByUserNameQuery, ShoppingCart>
+    IBasketRepository basketRepository) : IRequestHandler<GetBasketByUserNameQuery, ShoppingCart?>
 {
-    public async Task<ShoppingCart> Handle(GetBasketByUserNameQuery request)
+    public async Task<ShoppingCart?> Handle(GetBasketByUserNameQuery request)
     {
         var shoppingCart = await basketRepository.GetBasket(request.UserName);
         return shoppingCart;

@@ -18,7 +18,7 @@ public static class ServiceExtensions
         services.AddScoped<IBasketRepository, BasketRepository>();
         
         services.AddHealthChecks().AddRedis(
-            configuration["RedisSettings:ConnectionString"],
+            configuration["RedisSettings:ConnectionString"] ?? throw new InvalidOperationException(),
             "RedisHealth",
             HealthStatus.Degraded);
     }

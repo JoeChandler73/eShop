@@ -1,18 +1,8 @@
 namespace Basket.Domain.Model;
 
-public class ShoppingCart
+public record ShoppingCart
 {
-    public string UserName { get; set; }
+    public required string UserName { get; init; }
 
-    public List<ShoppingCartItem> Items { get; set; } = new();
-    
-    public ShoppingCart()
-    {
-        
-    }
-
-    public ShoppingCart(string userName)
-    {
-        UserName = userName;
-    }
+    public required List<ShoppingCartItem> Items { get; init; } = new();
 }

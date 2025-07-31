@@ -12,8 +12,7 @@ namespace Basket.Api.Controllers;
 [Route("api/[controller]")]
 public class BasketController(
     IMediator mediator,
-    IMessageBus messageBus,
-    ILogger<BasketController> logger) : ControllerBase
+    IMessageBus messageBus) : ControllerBase
 {
     [HttpGet]
     [Route("[action]/{userName}", Name = "GetBasketByUserName")]

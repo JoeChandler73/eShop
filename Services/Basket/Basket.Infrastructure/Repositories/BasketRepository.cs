@@ -8,14 +8,14 @@ namespace Basket.Infrastructure.Repositories;
 public class BasketRepository(
     IDistributedCache redisCache) : IBasketRepository
 {
-    public async Task<ShoppingCart> GetBasket(string userName)
+    public async Task<ShoppingCart?> GetBasket(string userName)
     {
-        var basket = await redisCache.GetStringAsync(userName);
+        var json = await redisCache.GetStringAsync(userName);
 
-        return string.IsNullOrEmpty(basket) ? null : JsonConvert.DeserializeObject<ShoppingCart>(basket);
+        return string.IsNullOrEmpty(json) ? null : JsonConvert.DeserializeObject<ShoppingCart>(json);
     }
 
-    public async Task<ShoppingCart> UpdateBasket(ShoppingCart shoppingCart)
+    public async Task<ShoppingCart?> UpdateBasket(ShoppingCart shoppingCart)
     {
         await redisCache.SetStringAsync(shoppingCart.UserName, JsonConvert.SerializeObject(shoppingCart));
         return await GetBasket(shoppingCart.UserName);
