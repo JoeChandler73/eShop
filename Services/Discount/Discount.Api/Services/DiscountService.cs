@@ -1,3 +1,4 @@
+using Discount.Api.Extensions;
 using Discount.Application.Commands;
 using Discount.Application.Queries;
 using Discount.Grpc.Protos;
@@ -17,14 +18,8 @@ public class DiscountService(
         var coupon = await mediator.Send(query);
         
         logger.LogInformation($"Discount is retrieved for the Product Name: {request.ProductName} and Amount : {coupon.Amount}");
-        
-        return new CouponModel
-        {
-            Id = coupon.Id,
-            ProductName = coupon.ProductName,
-            Description = coupon.Description,
-            Amount = coupon.Amount
-        };
+
+        return coupon.ToCouponModel();
     }
 
     public override async Task<CouponModel> CreateDiscount(CreateDiscountRequest request, ServerCallContext context)
@@ -40,19 +35,14 @@ public class DiscountService(
         
         logger.LogInformation($"Discount is successfully created for the Product Name: {coupon.ProductName}");
         
-        return new CouponModel
-        {
-            Id = coupon.Id,
-            ProductName = coupon.ProductName,
-            Description = coupon.Description,
-            Amount = coupon.Amount
-        };
+        return coupon.ToCouponModel();
     }
 
     public override async Task<CouponModel> UpdateDiscount(UpdateDiscountRequest request, ServerCallContext context)
     {
         var command = new UpdateDiscountCommand
         {
+            Id = request.Coupon.Id,
             ProductName = request.Coupon.ProductName,
             Amount = request.Coupon.Amount,
             Description = request.Coupon.Description
@@ -62,13 +52,7 @@ public class DiscountService(
         
         logger.LogInformation($"Discount is successfully updated for the Product Name: {coupon.ProductName}");
         
-        return new CouponModel
-        {
-            Id = coupon.Id,
-            ProductName = coupon.ProductName,
-            Description = coupon.Description,
-            Amount = coupon.Amount
-        };
+        return coupon.ToCouponModel();
     }
 
     public override async Task<DeleteDiscountResponse> DeleteDiscount(

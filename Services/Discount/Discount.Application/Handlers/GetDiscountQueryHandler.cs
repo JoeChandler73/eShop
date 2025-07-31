@@ -6,8 +6,7 @@ using Shared.Mediator;
 
 namespace Discount.Application.Handlers;
 
-public class GetDiscountQueryHandler(
-    IDiscountRepository discountRepository) : IRequestHandler<GetDiscountQuery, Coupon>
+public class GetDiscountQueryHandler(IDiscountRepository discountRepository) : IRequestHandler<GetDiscountQuery, Coupon>
 {
     public async Task<Coupon> Handle(GetDiscountQuery request)
     {

@@ -3,13 +3,13 @@ using Shared.Mediator;
 
 namespace Discount.Application.Commands;
 
-public class UpdateDiscountCommand : IRequest<Coupon>
+public record UpdateDiscountCommand : IRequest<Coupon>
 {
-    public int Id { get; set; }
+    public required int Id { get; init; }
     
-    public string ProductName { get; set; }
+    public required string ProductName { get; init; }
     
-    public string Description { get; set; }
+    public required string Description { get; init; }
     
-    public int Amount { get; set; }
+    public required int Amount { get; init; }
 }
