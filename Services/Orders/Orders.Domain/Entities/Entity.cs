@@ -1,8 +1,8 @@
 namespace Orders.Domain.Entities;
 
-public abstract class Entity
+public record Entity
 {
-    public int Id { get; set; }
+    public int? Id { get; init; }
     
     public string? CreatedBy { get; set; }
     

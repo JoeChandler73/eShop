@@ -20,7 +20,7 @@ public class Repository<TEntity>(IDbContextFactory<OrderContext> factory) : IRep
         return await context.Set<TEntity>().Where(predicate).ToListAsync();
     }
 
-    public async Task<TEntity> GetByIdAsync(int id)
+    public async Task<TEntity?> GetByIdAsync(int id)
     {
         await using var context = await factory.CreateDbContextAsync();
         return await context.Set<TEntity>().FindAsync(id);

@@ -1,5 +1,5 @@
 using Orders.Application.Queries;
-using Orders.Application.Resposnes;
+using Orders.Application.Responses;
 using Orders.Domain.Repositories;
 using Shared.Mediator;
 
@@ -15,7 +15,7 @@ public class GetOrderListQueryHandler(IOrderRepository orderRepository) : IReque
             .Select(x =>
                 new OrderResponse
                 {
-                    Id = x.Id,
+                    Id = x.Id ?? 0,
                     UserName = x.UserName,
                     TotalPrice = x.TotalPrice,
                     FirstName = x.FirstName,

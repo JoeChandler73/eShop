@@ -1,9 +1,9 @@
-using Shared.Messaging;
+namespace Orders.Application.Responses;
 
-namespace Orders.Application.Events;
-
-public record BasketCheckoutEvent : IMessage
+public record OrderResponse
 {
+    public required int Id { get; init; }
+    
     public required string UserName { get; init; }
     
     public required decimal TotalPrice { get; init; }

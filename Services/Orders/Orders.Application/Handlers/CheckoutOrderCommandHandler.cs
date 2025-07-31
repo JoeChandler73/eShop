@@ -33,6 +33,6 @@ public class CheckoutOrderCommandHandler(
 
         var generatedOrder = await orderRepository.AddAsync(orderEntry);
         logger.LogInformation("Order {GeneratedOrder} successfully created}.", generatedOrder);
-        return generatedOrder.Id;
+        return generatedOrder.Id ?? 0;
     }
 }

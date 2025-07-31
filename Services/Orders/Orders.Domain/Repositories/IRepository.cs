@@ -9,7 +9,7 @@ public interface IRepository<TEntity> where TEntity : Entity
     
     Task<IReadOnlyList<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate);
     
-    Task<TEntity> GetByIdAsync(int id);
+    Task<TEntity?> GetByIdAsync(int id);
     
     Task<TEntity> AddAsync(TEntity entity);
     

@@ -2,16 +2,14 @@ using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Orders.Application.Commands;
 using Orders.Application.Queries;
-using Orders.Application.Resposnes;
+using Orders.Application.Responses;
 using Shared.Mediator;
 
 namespace Orders.Api.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class OrderController(
-    IMediator mediator,
-    ILogger<OrderController> logger) : ControllerBase
+public class OrderController(IMediator mediator) : ControllerBase
 {
     [HttpGet("{userName}", Name = "GetOrdersByUserName")]
     [ProducesResponseType(typeof(IEnumerable<OrderResponse>), (int)HttpStatusCode.OK)]
@@ -47,7 +45,7 @@ public class OrderController(
     [ProducesDefaultResponseType]
     public async Task<ActionResult> DeleteOrder(int id)
     {
-        var cmd = new DeleteOrderCommand() {Id = id};
+        var cmd = new DeleteOrderCommand(id);
         await mediator.Send(cmd);
         return NoContent();
     }
