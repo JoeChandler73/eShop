@@ -6,7 +6,7 @@ namespace Catalog.Infrastructure.Entities;
 public class ProductBrandEntity : BaseEntity
 {
     [BsonElement("Name")]
-    public string Name { get; set; }
+    public required string Name { get; init; }
 }
 
 public static class ProductBrandEntityExtensions

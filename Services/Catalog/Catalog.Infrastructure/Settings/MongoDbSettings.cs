@@ -2,9 +2,9 @@ namespace Catalog.Infrastructure.Settings;
 
 public record MongoDbSettings
 {
-    public string ConnectionString { get; init; }
-    public string DatabaseName { get; init; }
-    public string ProductsCollection { get; init; }
-    public string BrandsCollection { get; init; }
-    public string TypesCollection { get; init; }
+    public required string ConnectionString { get; init; }
+    public required string DatabaseName { get; init; }
+    public required string ProductsCollection { get; init; }
+    public required string BrandsCollection { get; init; }
+    public required string TypesCollection { get; init; }
 }

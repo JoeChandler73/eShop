@@ -7,20 +7,20 @@ namespace Catalog.Infrastructure.Entities;
 public class ProductEntity : BaseEntity
 {
     [BsonElement("Name")]
-    public string Name { get; set; }
+    public required string Name { get; init; }
     
-    public string Summary { get; set; }
+    public required string Summary { get; init; }
     
-    public string Description { get; set; }
+    public required string Description { get; init; }
     
-    public string ImageFile { get; set; }
+    public required string ImageFile { get; init; }
     
-    public ProductBrandEntity Brands { get; set; }
+    public required ProductBrandEntity Brands { get; init; }
     
-    public ProductTypeEntity Types { get; set; }
+    public required ProductTypeEntity Types { get; init; }
     
     [BsonRepresentation(BsonType.Decimal128)]
-    public decimal Price { get; set; }
+    public decimal Price { get; init; }
 }
 
 public static class ProducEntityExtensions

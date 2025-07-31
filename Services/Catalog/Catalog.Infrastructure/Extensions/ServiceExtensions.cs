@@ -24,7 +24,9 @@ public static class ServiceExtensions
         });
 
         services.AddScoped<ICatalogContext, CatalogContext>();
+        services.AddScoped<ProductRepository>();
         services.AddScoped<IProductRepository, ProductRepository>();
+        services.AddScoped<IProductRepository>(provider => provider.GetRequiredService<ProductRepository>());
         services.AddScoped<IBrandRepository>(provider => provider.GetRequiredService<ProductRepository>());
         services.AddScoped<ITypesRepository>(provider => provider.GetRequiredService<ProductRepository>());
         
